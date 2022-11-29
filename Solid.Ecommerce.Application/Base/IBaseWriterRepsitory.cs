@@ -9,3 +9,8 @@ public interface IBaseWriterRepsitory<T> :IBaseRepo<T> where T : class
     Task DeleteAsync(T entity, bool saveChange = true); 
     Task DeleteRangeAsync(IEnumerable<T> entities, bool saveChange = true); 
 }
+/*
+    Asychounous: bat dong bo => cac task chay khong phu thuoc vao nhau
+    Parallels: song song => la phuong phap thuc thi nhieu task bat dong bo
+    Sychounous: dong bo
+ */

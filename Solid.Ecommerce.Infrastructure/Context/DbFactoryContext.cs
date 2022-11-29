@@ -11,7 +11,7 @@ public class DbFactoryContext : IDisposable
     private Func<SolidEcommerceDbContext> _instanceFunc;
     /*properties*/
     public DbContext DbContext => _dbContext?? (_dbContext = _instanceFunc.Invoke());
-
+    /*Constructor nay duoc goi thong qua service*/
     public DbFactoryContext(Func<SolidEcommerceDbContext> dbContextFactory)
     {
         _instanceFunc = dbContextFactory;

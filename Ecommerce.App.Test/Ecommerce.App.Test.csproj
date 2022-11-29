@@ -7,4 +7,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Solid.Ecommerce.Application\Solid.Ecommerce.Application.csproj" />
+    <ProjectReference Include="..\Solid.Ecommerce.Domain\Solid.Ecommerce.Domain.csproj" />
+    <ProjectReference Include="..\Solid.Ecommerce.Infrastructure\Solid.Ecommerce.Infrastructure.csproj" />
+    <ProjectReference Include="..\Solid.Ecommerce.Shared.EntityModels.SqlServer\Solid.Ecommerce.Shared.EntityModels.SqlServer.csproj" />
+  </ItemGroup>
+
 </Project>

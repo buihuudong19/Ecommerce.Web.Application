@@ -10,8 +10,4 @@
     <ProjectReference Include="..\Solid.Ecommerce.Application\Solid.Ecommerce.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>
