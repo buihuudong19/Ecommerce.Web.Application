@@ -45,10 +45,8 @@ public class Repository<T> : IRepository<T> where T : class
 
     public virtual async Task<T> FindAsync(params object[] keyValues) => await Entities.FindAsync(keyValues);
 
-
     public async Task<IList<T>> GetAllAsync() => await Entities.ToListAsync<T>();
-   
-
+  
     public async Task InsertAsync(T entity, bool saveChange = true)
     {
         await Entities.AddAsync(entity);
