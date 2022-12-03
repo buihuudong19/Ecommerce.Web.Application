@@ -1,21 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Solid.Ecommerce.Application.Interfaces.Servcices;
+using Solid.Ecommerce.Shared;
 
 namespace Ecommerce.Web.Pages
 {
     public class IndexModel : PageModel
     {
-        //connect to APIs (IRepository : 3-layer Architectures)
+       
         private readonly ILogger<IndexModel> _logger;
+        private readonly IProductService _productService;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IEnumerable<Product> Products { get; private set;}
+
+        public IndexModel(ILogger<IndexModel> logger, IProductService productService)
         {
             _logger = logger;
+            _productService = productService;   
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-
+            Products = await _productService.GetAll();
         }
     }
 }
