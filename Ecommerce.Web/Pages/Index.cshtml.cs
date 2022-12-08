@@ -10,7 +10,7 @@ namespace Ecommerce.Web.Pages
        
         private readonly ILogger<IndexModel> _logger;
         private readonly IProductService _productService;
-
+  
         public IEnumerable<Product> Products { get; private set;}
 
         public IndexModel(ILogger<IndexModel> logger, IProductService productService)
@@ -21,7 +21,7 @@ namespace Ecommerce.Web.Pages
 
         public async Task OnGetAsync()
         {
-            Products = await _productService.GetAll();
+            //Products = await _productService.GetAll();
         }
     }
 }

@@ -12,6 +12,7 @@ public class ProductService : IProductService
     {
         try
         {
+            
             await _unitOfWork.BeginTrasaction();
             await _unitOfWork.Repository<Product>().InsertAsync(product);
             await _unitOfWork.CommitTrasaction();

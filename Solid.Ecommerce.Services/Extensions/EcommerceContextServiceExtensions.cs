@@ -32,8 +32,6 @@ public static class EcommerceContextServiceExtensions
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
-
-        
     }
     public static IServiceCollection AddDataServices(this IServiceCollection services)
     {
