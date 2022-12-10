@@ -10,6 +10,7 @@ public class ProductService : IProductService
 
     public async Task Add(Product product)
     {
+        
         try
         {
             
@@ -44,7 +45,8 @@ public class ProductService : IProductService
         }
     }
 
-    public async Task<IEnumerable<Product>> GetAll() => await _unitOfWork.Repository<Product>().GetAllAsync();
+    public async Task<IEnumerable<Product>> GetAll() 
+        => await _unitOfWork.Repository<Product>().GetAllAsync();
 
 
     public async Task<Product> GetOne(int productId) => await _unitOfWork.Repository<Product>().FindAsync(productId);
@@ -52,11 +54,14 @@ public class ProductService : IProductService
 
     public async Task Update(Product product)
     {
+       
+
         try
         {
             await _unitOfWork.BeginTrasaction();
             /*Lay instance cua Repository*/
             var productRepo = _unitOfWork.Repository<Product>();
+            
             /*get a product */
             var pro = await productRepo.FindAsync(product.ProductId);
             if(pro == null) throw new KeyNotFoundException();

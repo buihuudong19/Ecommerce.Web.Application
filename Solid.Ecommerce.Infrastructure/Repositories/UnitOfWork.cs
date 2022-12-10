@@ -44,6 +44,8 @@ public class UnitOfWork : IUnitOfWork
             }
             var repository = new Repository<T>(ApplicationDBContext);
             Repositories.Add(typeName, repository);
+
+            
             return repository;  
         }
     }
