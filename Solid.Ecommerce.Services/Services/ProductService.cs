@@ -1,11 +1,14 @@
-﻿namespace Solid.Ecommerce.Services.Services;
+﻿using AutoMapper.QueryableExtensions;
+namespace Solid.Ecommerce.Services.Services;
 public class ProductService : IProductService
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
 
-    public ProductService(IUnitOfWork unitOfWork)
+    public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
     public async Task Add(Product product)
@@ -45,11 +48,24 @@ public class ProductService : IProductService
         }
     }
 
-    public async Task<IEnumerable<Product>> GetAll() 
-        => await _unitOfWork.Repository<Product>().GetAllAsync();
+    public async Task<IEnumerable<ProductViewModel>> GetAll()
+    {
+        // => await _unitOfWork.Repository<Product>().GetAllAsync();
+        return await _unitOfWork.Repository<Product>()
+            .Entities
+            .ProjectTo<ProductViewModel>(_mapper.ConfigurationProvider)
+            .ToListAsync();
+
+    }
 
 
-    public async Task<Product> GetOne(int productId) => await _unitOfWork.Repository<Product>().FindAsync(productId);
+
+    public async Task<ProductViewModel> GetOne(int productId)
+    {
+        //=> await _unitOfWork.Repository<Product>().FindAsync(productId);
+        var product= await _unitOfWork.Repository<Product>().FindAsync(productId);
+        return _mapper.Map<ProductViewModel>(product);
+    }
 
 
     public async Task Update(Product product)

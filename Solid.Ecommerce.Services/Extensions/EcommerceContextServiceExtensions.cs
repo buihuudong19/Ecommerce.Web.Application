@@ -1,11 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Solid.Ecommerce.Infrastructure.Context;
-using Solid.Ecommerce.Application.Interfaces.Common;
-using Solid.Ecommerce.Application.Interfaces.Repositories;
-using Solid.Ecommerce.Infrastructure.Repositories;
-using Solid.Ecommerce.Services.Services;
+﻿using Solid.Ecommerce.Application.Mappings;
 namespace Solid.Ecommerce.Services.Extensions;
 public static class EcommerceContextServiceExtensions
 {
@@ -36,5 +29,17 @@ public static class EcommerceContextServiceExtensions
     public static IServiceCollection AddDataServices(this IServiceCollection services)
     {
         return services.AddScoped<IProductService, ProductService>();
+    }
+
+    public static IServiceCollection AddAutoMapperService(this IServiceCollection services)
+    {
+        IMapper mapper;
+        var config = new MapperConfiguration(cfg =>
+        {
+            cfg.AddProfile<MappingProfile>();
+        });
+        mapper = config.CreateMapper();
+        services.AddSingleton(mapper);
+        return services;
     }
 }

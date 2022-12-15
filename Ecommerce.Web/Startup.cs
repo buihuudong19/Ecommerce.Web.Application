@@ -15,6 +15,7 @@ public class Startup
         /*Goi dich vu ket noi xuong database => entity framework core*/
         services.EcommerceInfrastructureDatabase(Configuration);
         services.AddDataServices();
+        services.AddAutoMapperService();
         
     }
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
