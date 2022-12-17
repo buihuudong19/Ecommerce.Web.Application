@@ -7,15 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Web", "Ecommerce.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.App.Test", "Ecommerce.App.Test\Ecommerce.App.Test.csproj", "{91D252E4-4B28-4956-8123-C933F03BEFFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Ecommerce.Shared.EntityModels.SqlServer", "Solid.Ecommerce.Shared.EntityModels.SqlServer\Solid.Ecommerce.Shared.EntityModels.SqlServer.csproj", "{48A84583-D895-4591-9A24-4905A6194B27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Ecommerce.Shared.EntityModels.SqlServer", "Solid.Ecommerce.Shared.EntityModels.SqlServer\Solid.Ecommerce.Shared.EntityModels.SqlServer.csproj", "{48A84583-D895-4591-9A24-4905A6194B27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Ecommerce.Domain", "Solid.Ecommerce.Domain\Solid.Ecommerce.Domain.csproj", "{CEC8C17D-8BFC-4AEF-BA06-999E6C16FC0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Ecommerce.Domain", "Solid.Ecommerce.Domain\Solid.Ecommerce.Domain.csproj", "{CEC8C17D-8BFC-4AEF-BA06-999E6C16FC0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Ecommerce.Application", "Solid.Ecommerce.Application\Solid.Ecommerce.Application.csproj", "{90D1FC98-7FCA-42B0-90D4-061FFC1B37E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Ecommerce.Application", "Solid.Ecommerce.Application\Solid.Ecommerce.Application.csproj", "{90D1FC98-7FCA-42B0-90D4-061FFC1B37E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Ecommerce.Infrastructure", "Solid.Ecommerce.Infrastructure\Solid.Ecommerce.Infrastructure.csproj", "{D08E3C1E-197B-438D-87F7-5AEDDF01E9FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Ecommerce.Infrastructure", "Solid.Ecommerce.Infrastructure\Solid.Ecommerce.Infrastructure.csproj", "{D08E3C1E-197B-438D-87F7-5AEDDF01E9FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Ecommerce.Services", "Solid.Ecommerce.Services\Solid.Ecommerce.Services.csproj", "{5CC8A65B-8036-4E54-B581-D2EFF68DA8A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Ecommerce.Services", "Solid.Ecommerce.Services\Solid.Ecommerce.Services.csproj", "{5CC8A65B-8036-4E54-B581-D2EFF68DA8A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -26,5 +26,6 @@ public class ProductViewModel:IMapFrom<Product>
         profile.CreateMap<Product, ProductViewModel>()
             .ForMember(dst => dst.ProductName, src => src.MapFrom(p => p.Name));
             
+            
     }
 }

@@ -28,7 +28,9 @@ public static class EcommerceContextServiceExtensions
     }
     public static IServiceCollection AddDataServices(this IServiceCollection services)
     {
-        return services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IProductCategoryService, ProductCategoryService>();
+        return services;
     }
 
     public static IServiceCollection AddAutoMapperService(this IServiceCollection services)

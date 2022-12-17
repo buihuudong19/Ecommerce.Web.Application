@@ -58,7 +58,16 @@ public class ProductService : IProductService
 
     }
 
+    public async Task<IEnumerable<ProductViewModel>> GetAllProductBySubCategoryIdAsync(int? subCategoryId)
+    {
+        var products = await _unitOfWork.Repository<Product>()
+            .Entities
+            .ProjectTo<ProductViewModel>(_mapper.ConfigurationProvider)
+            .Where(pvm => subCategoryId.HasValue ? pvm.ProductSubcategory.ProductSubcategoryId == subCategoryId : pvm.ProductSubcategory.ProductCategoryId == 1)
+            .ToListAsync();
 
+        return products;
+    }
 
     public async Task<ProductViewModel> GetOne(int productId)
     {

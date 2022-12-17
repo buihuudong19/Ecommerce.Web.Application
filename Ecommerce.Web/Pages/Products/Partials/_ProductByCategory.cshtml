@@ -1,0 +1,6 @@
+﻿@{
+    foreach (var p in Model)
+    {
+        @await Component.InvokeAsync("ProductCard",p);
+    }
+}
