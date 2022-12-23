@@ -132,6 +132,11 @@ public partial class Product
     [StringLength(400)]
     public string? Description { get; set; }
 
+    public int? StatusId { get; set; }
+
+    [Column(TypeName = "decimal(5, 2)")]
+    public decimal? DiscountPercent { get; set; }
+
     [InverseProperty("Product")]
     public virtual ICollection<ProductProductPhoto> ProductProductPhotos { get; } = new List<ProductProductPhoto>();
 
@@ -154,6 +159,10 @@ public partial class Product
 
     [InverseProperty("Product")]
     public virtual ICollection<SpecialOfferProduct> SpecialOfferProducts { get; } = new List<SpecialOfferProduct>();
+
+    [ForeignKey("StatusId")]
+    [InverseProperty("Products")]
+    public virtual ProductStatus? Status { get; set; }
 
     [ForeignKey("WeightUnitMeasureCode")]
     [InverseProperty("ProductWeightUnitMeasureCodeNavigations")]

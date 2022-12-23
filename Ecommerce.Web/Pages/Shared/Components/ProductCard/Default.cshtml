@@ -1,22 +1,28 @@
-﻿@model dynamic
+﻿@model Solid.Ecommerce.Application.ViewModels.ProductViewModel;
+@{
+	var listPrice = Math.Round(Model.ListPrice);
+	var unitPrice = listPrice - Math.Round((Model.DiscountPercent * listPrice / 100) ?? 0);
+    
+}
+
 <div class="col-md-6 col-xxl-4">
     <div class="card h-100">
     <div class="position-relative">
-        <img src="img/1600x900.png" alt="Product image" class="card-img-top">
+        <img src="~/images/products/@Model.PrimaryPhotoLargeFileName" alt="Product image" class="card-img-top">
         <div class="badge bg-info position-absolute top-0 end-0 mt-2 me-2">Tag</div>
     </div>
     <div class="card-body position-relative">
         <h2 class="h4"><a href="product.html" class="stretched-link">@Model.ProductName</a></h2>
-        <div class="text-uppercase fw-bold text-muted mb-1">Brand Name</div>
-        <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis convallis velit quis sapien sollicitudin ultrices.</p>
+        <div class="text-uppercase fw-bold text-muted mb-1">@Model.ProductSubcategory?.Name</div>
+        <p class="mb-3">@Model.Description</p>
         <div class="small position-absolute bottom-0 end-0 mb-2 me-3 text-success">
         <i class="bi-check-circle"></i>
-        In stock
+        @Model.Status?.StatusName
         </div>
     </div>
     <div class="card-footer">
         <div class="d-flex justify-content-between align-items-center">
-        <div class="fs-3 fw-bold lh-1">$199 <span class="fs-6 text-decoration-line-through text-muted">($299)</span></div>
+        <div class="fs-3 fw-bold lh-1">$@unitPrice <span class="fs-6 text-decoration-line-through text-muted">($@listPrice)</span></div>
         <div class="d-flex">
             <button type="button" class="btn btn-primary me-2 js-addToCart">
             <i class="bi-cart-plus"></i><span class="visually-hidden">Add to cart</span>

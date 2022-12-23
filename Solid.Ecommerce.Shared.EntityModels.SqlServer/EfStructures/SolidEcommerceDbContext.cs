@@ -6,10 +6,6 @@ namespace Solid.Ecommerce.Shared;
 
 public partial class SolidEcommerceDbContext : DbContext
 {
-    public SolidEcommerceDbContext()
-    {
-    }
-
     public SolidEcommerceDbContext(DbContextOptions<SolidEcommerceDbContext> options)
         : base(options)
     {
@@ -64,6 +60,8 @@ public partial class SolidEcommerceDbContext : DbContext
     public virtual DbSet<ProductPhoto> ProductPhotos { get; set; }
 
     public virtual DbSet<ProductProductPhoto> ProductProductPhotos { get; set; }
+
+    public virtual DbSet<ProductStatus> ProductStatuses { get; set; }
 
     public virtual DbSet<ProductSubcategory> ProductSubcategories { get; set; }
 
@@ -130,9 +128,6 @@ public partial class SolidEcommerceDbContext : DbContext
     public virtual DbSet<VVendorWithContact> VVendorWithContacts { get; set; }
 
     public virtual DbSet<Vendor> Vendors { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("server =DONGBHPC\\MSSQLSERVER2019; database = SolidEcommerceDB;uid=sa;pwd=sa;Trustservercertificate=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -517,6 +512,7 @@ public partial class SolidEcommerceDbContext : DbContext
                 .HasComment("H = High, M = Medium, L = Low");
             entity.Property(e => e.Color).HasComment("Product color.");
             entity.Property(e => e.DiscontinuedDate).HasComment("Date the product was discontinued.");
+            entity.Property(e => e.DiscountPercent).HasDefaultValueSql("((10))");
             entity.Property(e => e.ListPrice).HasComment("Selling price.");
             entity.Property(e => e.MakeFlag)
                 .HasDefaultValueSql("((1))")
@@ -535,6 +531,7 @@ public partial class SolidEcommerceDbContext : DbContext
                 .IsFixedLength()
                 .HasComment("Unit of measure for Size column.");
             entity.Property(e => e.StandardCost).HasComment("Standard cost of the product.");
+            entity.Property(e => e.StatusId).HasDefaultValueSql("((1))");
             entity.Property(e => e.Style)
                 .IsFixedLength()
                 .HasComment("W = Womens, M = Mens, U = Universal");
@@ -542,6 +539,8 @@ public partial class SolidEcommerceDbContext : DbContext
             entity.Property(e => e.WeightUnitMeasureCode)
                 .IsFixedLength()
                 .HasComment("Unit of measure for Weight column.");
+
+            entity.HasOne(d => d.Status).WithMany(p => p.Products).HasConstraintName("FK__Product__StatusI__4DB4832C");
         });
 
         modelBuilder.Entity<ProductCategory>(entity =>
@@ -582,6 +581,13 @@ public partial class SolidEcommerceDbContext : DbContext
             entity.HasOne(d => d.Product).WithMany(p => p.ProductProductPhotos).OnDelete(DeleteBehavior.ClientSetNull);
 
             entity.HasOne(d => d.ProductPhoto).WithMany(p => p.ProductProductPhotos).OnDelete(DeleteBehavior.ClientSetNull);
+        });
+
+        modelBuilder.Entity<ProductStatus>(entity =>
+        {
+            entity.HasKey(e => e.StatusId).HasName("pk_StatusId");
+
+            entity.Property(e => e.StatusId).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<ProductSubcategory>(entity =>

@@ -17,6 +17,10 @@ public class ProductViewModel:IMapFrom<Product>
     public string? ProductLine { get; set; }
     public int? ProductSubcategoryId { get; set; }
     public string? Description { get; set; }
+    public int? StatusId { get; set; }
+    public virtual ProductStatus? Status { get; set; }
+    public string? PrimaryPhotoLargeFileName { get; set; }
+    public decimal? DiscountPercent { get; set; }
     public virtual ICollection<ProductProductPhotoViewModel> ProductProductPhotos { get; set;}
     public virtual ProductSubcategoryViewModel? ProductSubcategory { get; set; }
     
@@ -24,8 +28,15 @@ public class ProductViewModel:IMapFrom<Product>
     public void Mapping(Profile profile)
     {
         profile.CreateMap<Product, ProductViewModel>()
-            .ForMember(dst => dst.ProductName, src => src.MapFrom(p => p.Name));
-            
-            
+            .ForMember(dst => dst.ProductName, src => src.MapFrom(p => p.Name))
+            .ForMember(dst => dst.PrimaryPhotoLargeFileName,
+                src => src.MapFrom(
+                    p => p.ProductProductPhotos
+                    .Where(p => p.Primary)
+                    .FirstOrDefault()
+                    .ProductPhoto
+                    .LargePhotoFileName
+                    ));
+
     }
 }
