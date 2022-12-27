@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Solid.Ecommerce.Services\Solid.Ecommerce.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Pages\Categories\" />
+  </ItemGroup>
+
 </Project>

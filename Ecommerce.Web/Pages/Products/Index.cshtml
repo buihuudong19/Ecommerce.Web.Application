@@ -288,19 +288,45 @@
           </div>
           <nav aria-label="Navigate products in shop">
             <ul class="pagination mb-0">
-              <li class="page-item disabled">
-                <span class="page-link">Previous</span>
+              <li class="page-item @((Model.Products.PageIndex==1)? "disabled":"")">
+                        @{
+                            @*Index hien tai*@
+                            var pIndex = Model.Products.PageIndex;
+                            
+                            if (Model.Products.HasPreviousPage) pIndex -= 1;
+                        }
+
+                    <a  asp-page="./Index"
+                        asp-route-subCategoryId = "@Model.SubCategoryId"
+                        asp-route-pageIndex = "@pIndex"
+                    class ="page-link">Previous</a>
               </li>
-              <li class="page-item active" aria-current="page">
-                <span class="page-link">
-                  1 <span class="visually-hidden">(current)</span>
-                </span>
+
+                    @for(var i = 1; i<=Model.Products.TotalPages;i++)
+                    {
+                        <li class="page-item @((i==Model.Products.PageIndex)? "active":"")"><a 
+                         asp-page="./Index"
+                         asp-route-subCategoryId = "@Model.SubCategoryId"
+                         asp-route-pageIndex ="@i" 
+                        
+                        class="page-link">@i</a></li>
+                    }
+
+             
+              
+              <li class="page-item @((Model.Products.PageIndex==Model.Products.TotalPages)? "disabled":"")">
+                        @{
+                            @*Index hien tai*@
+                            pIndex = Model.Products.PageIndex;
+                            
+                            if (Model.Products.HasNextPage) pIndex += 1;
+                        }
+
+                    <a  asp-page="./Index"
+                        asp-route-subCategoryId = "@Model.SubCategoryId"
+                        asp-route-pageIndex = "@pIndex"
+                    class ="page-link">Next</a>
               </li>
-              <li class="page-item"><a href="#" class="page-link">2</a></li>
-              <li class="page-item"><a href="#" class="page-link">3</a></li>
-              <li class="page-item"><a href="#" class="page-link">4</a></li>
-              <li class="page-item"><a href="#" class="page-link">5</a></li>
-              <li class="page-item"><a href="#" class="page-link">Next</a></li>
             </ul>
           </nav>
         </div>
