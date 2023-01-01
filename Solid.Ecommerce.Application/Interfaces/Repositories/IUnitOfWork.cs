@@ -17,12 +17,12 @@ public interface IUnitOfWork
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<int> SaveChangesAsync(CancellationToken cancellationToken=default);
-    Task BeginTrasaction();
+    Task BeginTransaction();
     /// <summary>
     /// Commits the current transaction (applied all command to database)
     /// </summary>
     /// <returns></returns>
-    Task CommitTrasaction();
+    Task CommitTransaction();
     /// <summary>
     /// Rolls back the current transaction...
     /// </summary>

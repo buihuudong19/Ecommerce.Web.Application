@@ -1,33 +1,28 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Ecommerce.Web.Utils;
+
 
 namespace Ecommerce.Web.Pages.Products;
-
 public class IndexModel : PageModel
 {
-    private readonly IProductService _productService;
+	private readonly IProductService _productService;
+	[ViewData]
+	public string Title { get; set; }
 
-    public IndexModel(IProductService productService)
-    {
-        _productService = productService;
-    }
+	public IndexModel(IProductService productService)
+	{
+		_productService = productService;
+	}
+	public PaginatedList<Product> Products { get; set; }
+	public int? SubCategoryId { get; set; }
+	public async Task OnGetAsync(int? subCategoryId, int? pageIndex)
+	{
+		Title = subCategoryId.HasValue ? $"List product by {subCategoryId}" : $"List all products";
+		SubCategoryId = subCategoryId.HasValue == false ? null : subCategoryId;
 
-    [ViewData]
-    public string Title { get; set; }
-    //public IEnumerable<ProductViewModel> Products { get; set; } 
-    public PaginatedList<ProductViewModel> Products { get; set; }   
-    public int? SubCategoryId { get; set; }
+		var products = SubCategoryId.HasValue ?
+				(await _productService.GetAllAsync(p => p.ProductSubcategoryId == SubCategoryId)).AsQueryable() :
+				(await _productService.GetAllAsync(p => p.ProductSubcategory.ProductCategoryId == 1)).AsQueryable();
 
-    public async Task  OnGetAsync(int? subCategoryId,int? pageIndex)
-    {
-        SubCategoryId = subCategoryId.HasValue ? subCategoryId.Value : null;
-        Title = subCategoryId.HasValue ? $"List products by {subCategoryId}" : $"List all products";
-        //Products = await _productService.GetAllProductBySubCategoryIdAsync(subCategoryId);
-        var products = (await _productService.GetAllProductBySubCategoryIdAsync(subCategoryId)).AsQueryable();
+		Products = PaginatedList<Product>.Create(products, pageIndex ?? 1);
 
-        Products = PaginatedList<ProductViewModel>.Create(products, pageIndex ?? 1);
-
-    }
-   
+	}
 }

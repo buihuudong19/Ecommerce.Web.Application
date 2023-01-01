@@ -1,6 +1,13 @@
-﻿@{
-    foreach (var p in Model)
-    {
-        @await Component.InvokeAsync("ProductCard",p);
-    }
+﻿@model IEnumerable<Product>
+@{
+	if (Model.Any())
+	{
+	    foreach (var p in Model)
+	    {
+	        @await Component.InvokeAsync("ProductCard",p);
+	            
+	
+	    }
+	}
+	    
 }

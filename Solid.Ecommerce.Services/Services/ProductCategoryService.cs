@@ -1,29 +1,45 @@
 ﻿namespace Solid.Ecommerce.Services.Services;
-public class ProductCategoryService : IProductCategoryService
+public class ProductCategoryService : DataServiceBase<ProductCategory>, IProductCategoryService
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IMapper _mapper;
+	public ProductCategoryService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
+	{
 
-    public ProductCategoryService(IUnitOfWork unitOfWork, IMapper mapper)
-    {
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-    }
 
-    public async Task<IEnumerable<ProductSubcategoryViewModel>> GetAllCategoryAsync()
-    {
-        return await _unitOfWork.Repository<ProductSubcategory>()
-            .Entities
-            .ProjectTo<ProductSubcategoryViewModel>(_mapper.ConfigurationProvider)
-            .ToListAsync();
-    }
+	}
+	public override Task<int?> AddAsync(ProductCategory entity)
+	{
+		throw new NotImplementedException();
+	}
 
-    public async Task<IEnumerable<ProductSubcategoryViewModel>> GetAllCategoryAsync(Expression<Func<ProductSubcategoryViewModel, bool>> predicate)
-    {
-        return await _unitOfWork.Repository<ProductSubcategory>()
-           .Entities
-           .ProjectTo<ProductSubcategoryViewModel>(_mapper.ConfigurationProvider)
-           .Where(predicate)
-           .ToListAsync();
-    }
+	public override Task DeleteAsync(int productId)
+	{
+		throw new NotImplementedException();
+	}
+
+	public override Task DeleteAysnc(ProductCategory entity)
+	{
+		throw new NotImplementedException();
+	}
+
+	public override async Task<IList<ProductCategory>> GetAllAsync()
+	 => await UnitOfWork.Repository<ProductCategory>()
+		.Entities
+		.ToListAsync();
+
+	public override async Task<IEnumerable<ProductCategory>> GetAllAsync(Expression<Func<ProductCategory, bool>> predicate)
+	=> await UnitOfWork.Repository<ProductCategory>()
+		.Entities
+		.Where(predicate)
+		.ToListAsync();
+
+	public override Task<ProductCategory> GetOneAsync(int? id)
+	{
+		throw new NotImplementedException();
+	}
+
+	public override Task UpdateAsync(ProductCategory entity)
+	{
+		throw new NotImplementedException();
+	}
 }
+

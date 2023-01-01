@@ -1,15 +1,14 @@
-﻿namespace Ecommerce.Web.ViewComponents;
+﻿
+namespace Ecommerce.Web.ViewComponents;
 [ViewComponent]
-public class ProductCard:ViewComponent
+public class ProductCard : ViewComponent
 {
-    private ProductViewModel _productViewModel;
+	private Product _product;
+	public ProductCard() { }
 
-    public ProductCard()
-    {
-    }
-    public IViewComponentResult Invoke(ProductViewModel productViewModel)
-    {
-        _productViewModel = productViewModel;
-        return View(_productViewModel);
-    }
+	public IViewComponentResult Invoke(Product product)
+	{
+		_product = product;
+		return View(_product);
+	}
 }

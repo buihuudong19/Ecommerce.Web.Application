@@ -16,12 +16,12 @@ public class UnitOfWork : IUnitOfWork
         Repositories = new Dictionary<string, dynamic>();
     }
 
-    public async Task BeginTrasaction()
+    public async Task BeginTransaction()
     {
         await StartNewTransaction();
     }
 
-    public async Task CommitTrasaction()
+    public async Task CommitTransaction()
     {
         await ApplicationDBContext.DbContext.SaveChangesAsync();
         if (_transaction == null) return;

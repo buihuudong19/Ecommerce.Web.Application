@@ -1,6 +1,5 @@
 ﻿namespace Solid.Ecommerce.Application.Interfaces.Services;
-public interface IProductCategoryService
+public interface IProductCategoryService : IDataService<ProductCategory>
 {
-    Task<IEnumerable<ProductSubcategoryViewModel>> GetAllCategoryAsync();
-    Task<IEnumerable<ProductSubcategoryViewModel>> GetAllCategoryAsync(Expression<Func<ProductSubcategoryViewModel, bool>> predicate);
+
 }
