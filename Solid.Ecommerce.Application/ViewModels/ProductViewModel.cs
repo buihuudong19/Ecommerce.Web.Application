@@ -8,10 +8,12 @@ public class ProductViewModel:IMapFrom<Product>
     }
 
     public int ProductId { get; set; }
+    
     public string ProductName { get; set; } = null!;
     public string ProductNumber { get; set; } = null!;
     public bool? MakeFlag { get; set; }
     public string? Color { get; set; }
+    [Display(Name ="Cost")]
     public decimal StandardCost { get; set; }
     public decimal ListPrice { get; set; }
     public string? ProductLine { get; set; }

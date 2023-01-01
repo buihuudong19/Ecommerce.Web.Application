@@ -1,8 +1,7 @@
 ﻿@page
 @model Ecommerce.Web.Areas.Admin.Pages.Products.IndexModel
 @{
+	Layout = "_SecureLayout";
 }
-@*
-    URLs: Admin/Pages/Products/Index
-
-*@
+<h4>Dashboard Products</h4>
+<partial name="Partials/_ProductListDashboard" model="@Model.ProductRecords" />
