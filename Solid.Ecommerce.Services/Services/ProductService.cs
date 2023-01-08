@@ -83,6 +83,7 @@ public class ProductService : DataServiceBase<Product>, IProductService
 			pro.Color = entity.Color;
 			pro.ProductSubcategoryId = entity.ProductSubcategoryId;
 			pro.StatusId = entity.StatusId;
+			pro.SellEndDate = entity.SellEndDate;
 
 			await UnitOfWork.CommitTransaction();
 		}

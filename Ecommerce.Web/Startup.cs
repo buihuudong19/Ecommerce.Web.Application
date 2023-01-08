@@ -1,4 +1,6 @@
 ﻿
+using Solid.Ecommerce.Services.Services;
+
 namespace Ecommerce.Web;
 public class Startup
 {
@@ -13,6 +15,10 @@ public class Startup
     {
         services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
         services.AddRazorPages();
+
+        services.AddHttpContextAccessor();
+        services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
+        services.AddScoped<IRazorRenderService, RazorRenderService>();
         /*Goi dich vu ket noi xuong database => entity framework core*/
         services.EcommerceInfrastructureDatabase(Configuration);
         services.AddDataServices();

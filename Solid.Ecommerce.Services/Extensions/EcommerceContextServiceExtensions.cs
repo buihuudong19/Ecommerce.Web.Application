@@ -32,6 +32,7 @@ public static class EcommerceContextServiceExtensions
         services.AddScoped<IProductSubCategoryService, ProductSubCategoryService>();
         services.AddScoped<IProductCategoryService, ProductCategoryService>();
         services.AddScoped<IProductStatusService, ProductStatusService>();
+        
 
         return services;
     }
